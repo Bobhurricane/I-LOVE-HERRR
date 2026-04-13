@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For You ❤️</title>
 
-<!-- 💖 FONT -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
@@ -18,17 +17,14 @@ body {
     overflow-x: hidden;
 }
 
-/* container */
 .container {
     padding: 40px 20px;
 }
 
-/* title */
 h1 {
     font-size: 3em;
 }
 
-/* typing */
 #typing {
     font-size: 1.2em;
     max-width: 700px;
@@ -39,7 +35,7 @@ h1 {
     transition: opacity 1s ease-in;
 }
 
-/* 📸 PERFECT PHOTO GRID */
+/* 📸 PHOTO GRID */
 .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -55,6 +51,33 @@ h1 {
     object-fit: cover;
     border-radius: 15px;
 }
+
+/* 💌 SECRET MESSAGE */
+#secret {
+    margin-top: 100px;
+    padding: 60px 20px;
+    font-size: 1.5em;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1.5s ease;
+}
+
+/* 💖 HEART CONFETTI */
+.heart-float {
+    position: fixed;
+    top: -10px;
+    font-size: 20px;
+    animation: fall linear forwards;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh);
+        opacity: 0;
+    }
+}
 </style>
 </head>
 
@@ -62,12 +85,12 @@ h1 {
 
 <h1>For You ❤️</h1>
 
-<!-- 🎵 MUSIC -->
 <audio id="song" loop>
   <source src="song.mp3" type="audio/mpeg">
 </audio>
 
 <div class="container">
+
     <p id="typing"></p>
 
     <h2>Memories 📸</h2>
@@ -90,11 +113,17 @@ h1 {
         <img src="photo15.jpg">
         <img src="photo16.jpg">
     </div>
+
+    <!-- 💖 SECRET -->
+    <div id="secret">
+        💖 If you’re reading this, just know I chose you every single day, and I always will. No matter what happens, you’ll always have a place in my heart. 💖
+    </div>
+
 </div>
 
 <script>
 
-/* 💌 MESSAGE (UNCHANGED) */
+/* 💌 MESSAGE */
 const text = `Dear Kylie ❤️
 
 I see you’ve found this website I made. This was created directly for you and no one else.
@@ -118,14 +147,12 @@ Gael ❤️
 
 I love you ❤️`;
 
-/* ✨ typing */
+/* typing */
 let i = 0;
 const typingEl = document.getElementById("typing");
 
 function type() {
-    if (i === 0) {
-        typingEl.style.opacity = "1";
-    }
+    if (i === 0) typingEl.style.opacity = "1";
 
     if (i < text.length) {
         typingEl.innerHTML += text.charAt(i);
@@ -135,7 +162,7 @@ function type() {
 }
 type();
 
-/* 🎵 music start */
+/* music */
 let musicStarted = false;
 
 function startMusic() {
@@ -154,6 +181,42 @@ function startMusic() {
 window.addEventListener("scroll", startMusic);
 window.addEventListener("click", startMusic);
 window.addEventListener("touchstart", startMusic);
+
+/* 💖 HEART CONFETTI */
+let heartsPlayed = false;
+
+function spawnHearts() {
+    for (let i = 0; i < 60; i++) {
+        const heart = document.createElement("div");
+        heart.classList.add("heart-float");
+        heart.innerHTML = "💖";
+
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 2 + 2) + "s";
+        heart.style.fontSize = (Math.random() * 10 + 15) + "px";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 4000);
+    }
+}
+
+/* 💌 scroll end trigger */
+window.addEventListener("scroll", () => {
+    const scrollPosition = window.innerHeight + window.scrollY;
+    const pageHeight = document.body.offsetHeight;
+
+    if (scrollPosition >= pageHeight - 10) {
+
+        document.getElementById("secret").style.opacity = "1";
+        document.getElementById("secret").style.transform = "translateY(0)";
+
+        if (!heartsPlayed) {
+            heartsPlayed = true;
+            spawnHearts();
+        }
+    }
+});
 
 </script>
 
