@@ -34,18 +34,6 @@ img {
     border-radius: 15px;
     margin: 10px;
 }
-
-/* Music button */
-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 10px;
-    background: white;
-    color: #ff4d6d;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 15px;
-}
 </style>
 </head>
 
@@ -58,10 +46,6 @@ button {
   <source src="song.mp3" type="audio/mpeg">
 </audio>
 
-<button onclick="document.getElementById('song').play()">
-🎵 Tap to Play Music
-</button>
-
 <div class="container">
     <p id="typing"></p>
 
@@ -72,6 +56,7 @@ button {
 </div>
 
 <script>
+/* Typing effect */
 const text = `Happy Birthday ❤️
 
 I made this for you because you mean so much to me.
@@ -81,7 +66,6 @@ Every moment with you is special.
 I love you ❤️`;
 
 let i = 0;
-
 function type() {
     if (i < text.length) {
         document.getElementById("typing").innerHTML += text.charAt(i);
@@ -90,6 +74,23 @@ function type() {
     }
 }
 type();
+
+/* 🎵 MUSIC STARTS ON SCROLL */
+let musicStarted = false;
+
+function startMusic() {
+    if (musicStarted) return;
+
+    const audio = document.getElementById("song");
+
+    audio.play().then(() => {
+        musicStarted = true;
+    }).catch(err => {
+        console.log("Autoplay blocked:", err);
+    });
+}
+
+window.addEventListener("scroll", startMusic);
 </script>
 
 </body>
