@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For Kylie.. </title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
 
 <style>
 body {
@@ -11,10 +12,11 @@ body {
     background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
     color: white;
     text-align: center;
+    overflow-x: hidden;
 }
 
 .container {
-    padding: 40px;
+    padding: 40px 20px;
 }
 
 h1 {
@@ -26,12 +28,14 @@ h1 {
     max-width: 700px;
     margin: auto;
     white-space: pre-line;
-    border-right: 2px solid white;
     line-height: 1.8;
+    opacity: 0;
+    transition: opacity 1s ease-in;
 }
 
 img {
     width: 200px;
+    max-width: 90%;
     border-radius: 15px;
     margin: 10px;
 }
@@ -42,6 +46,7 @@ img {
 
 <h1>For You ❤️</h1>
 
+<!-- MUSIC -->
 <audio id="song" loop>
   <source src="song.mp3" type="audio/mpeg">
 </audio>
@@ -50,14 +55,29 @@ img {
     <p id="typing"></p>
 
     <h2>Memories 📸</h2>
+
+    <!-- 16 PHOTOS TOTAL -->
     <img src="photo1.jpg">
     <img src="photo2.jpg">
     <img src="photo3.jpg">
+    <img src="photo4.jpg">
+    <img src="photo5.jpg">
+    <img src="photo6.jpg">
+    <img src="photo7.jpg">
+    <img src="photo8.jpg">
+    <img src="photo9.jpg">
+    <img src="photo10.jpg">
+    <img src="photo11.jpg">
+    <img src="photo12.jpg">
+    <img src="photo13.jpg">
+    <img src="photo14.jpg">
+    <img src="photo15.jpg">
+    <img src="photo16.jpg">
 </div>
 
 <script>
 
-/* 💖 PROPER PARAGRAPH LETTER */
+/* MESSAGE (UNCHANGED) */
 const text = `Dear Kylie ❤️
 
 I see you’ve found this website I made. This was created directly for you and no one else.
@@ -81,18 +101,24 @@ Gael ❤️
 
 I love you ❤️`;
 
-/* typing effect */
+/* typing */
 let i = 0;
+const typingEl = document.getElementById("typing");
+
 function type() {
+    if (i === 0) {
+        typingEl.style.opacity = "1";
+    }
+
     if (i < text.length) {
-        document.getElementById("typing").innerHTML += text.charAt(i);
+        typingEl.innerHTML += text.charAt(i);
         i++;
         setTimeout(type, 40);
     }
 }
 type();
 
-/* music trigger */
+/* music */
 let musicStarted = false;
 
 function startMusic() {
