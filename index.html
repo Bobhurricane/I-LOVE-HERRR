@@ -23,10 +23,11 @@ h1 {
 
 #typing {
     font-size: 1.2em;
-    max-width: 600px;
+    max-width: 700px;
     margin: auto;
     white-space: pre-line;
     border-right: 2px solid white;
+    line-height: 1.8;
 }
 
 img {
@@ -41,7 +42,6 @@ img {
 
 <h1>For You ❤️</h1>
 
-<!-- MUSIC -->
 <audio id="song" loop>
   <source src="song.mp3" type="audio/mpeg">
 </audio>
@@ -56,15 +56,32 @@ img {
 </div>
 
 <script>
-/* Typing effect */
-const text = `Happy Birthday ❤️
 
-helloo i see you have found this website i made, this website is made directly for you and no one else,
-everyday i dream of you and wake up to the thought of you and end my day with the thought of you, i want us to last and
-love eachother forever
+/* 💖 PROPER PARAGRAPH LETTER */
+const text = `Dear Kylie ❤️
+
+I see you’ve found this website I made. This was created directly for you and no one else.
+
+Every day I think about you when I wake up, and you’re still on my mind when I go to sleep.
+
+I want us to last and continue loving each other forever.
+
+I want us to build a life together—maybe even have a daughter and two cats—and accomplish our dreams side by side.
+
+My life has been immediately better ever since you came into it, no joke. I know it might sound dramatic, but I genuinely love you.
+
+Our relationship has stayed strong while others around us have fallen apart.
+
+Even though we have our ups and downs like a roller coaster, we always find our way back to each other and grow a stronger, unbreakable bond.
+
+I’m sorry if I’ve ever hurt your feelings—that was never my intention. You truly are the person I want to love.
+
+Sincerely,  
+Gael ❤️
 
 I love you ❤️`;
 
+/* typing effect */
 let i = 0;
 function type() {
     if (i < text.length) {
@@ -75,22 +92,26 @@ function type() {
 }
 type();
 
-/* 🎵 MUSIC STARTS ON SCROLL */
+/* music trigger */
 let musicStarted = false;
 
 function startMusic() {
     if (musicStarted) return;
 
     const audio = document.getElementById("song");
+    audio.volume = 0.7;
 
     audio.play().then(() => {
         musicStarted = true;
     }).catch(err => {
-        console.log("Autoplay blocked:", err);
+        console.log("Blocked until interaction:", err);
     });
 }
 
 window.addEventListener("scroll", startMusic);
+window.addEventListener("click", startMusic);
+window.addEventListener("touchstart", startMusic);
+
 </script>
 
 </body>
