@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+    color: white;
+    text-align: center;
+}
+
+.container {
+    padding: 40px;
+}
+
+h1 {
+    font-size: 3em;
+}
+
+#typing {
+    font-size: 1.2em;
+    max-width: 600px;
+    margin: auto;
+    white-space: pre-line;
+    border-right: 2px solid white;
+}
+
+img {
+    width: 200px;
+    border-radius: 15px;
+    margin: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>For You ❤️</h1>
+
+<div class="container">
+    <p id="typing"></p>
+
+    <h2>Memories 📸</h2>
+    <img src="photo1.jpg">
+    <img src="photo2.jpg">
+    <img src="photo3.jpg">
+</div>
+
+<script>
+const text = `Happy Birthday ❤️
+
+I made this for you because you mean so much to me.
+
+Every moment with you is special.
+
+I love you ❤️`;
+
+let i = 0;
+
+function type() {
+    if (i < text.length) {
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(type, 40);
+    }
+}
+type();
+</script>
+
+</body>
+</html>
